@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NinjaMan</title>
+	<style type = "text/css">
+		*{
+			background-color: white;
+			margin: 0px;
+			padding: 0px;
+		}
+		.row{
+			line-height: 0;
+		}
+		.wall{
+			background-color: blue;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+		}
+		.sushi{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('sushi.png');
+			background-size: contain;
+		}
+		.onigiri{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('onigiri.png');
+			background-size: contain;
+		}
+		.blank{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+		}
+		#ninja{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('ninja.gif');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+		#bluey{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('bluey.gif');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+		#pinky{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('pinky.gif');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+		#pumpky{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('pumpky.gif');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+		#red{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('red.gif');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+		#scaredy{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('scaredy.png');
+			background-size: contain;
+			position: absolute;
+			left:40px;
+			top: 40px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id = 'world'>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+	</div>
+	<div class = 'row'>
+		<div class = 'wall'></div>
+		<div class = 'sushi'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+	</div>
+	<div class = 'row'>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		
+	</div>
+	<div class = 'row'>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		
+	</div>
+	<div class = 'row'>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+		<div class = 'wall'></div>
+	</div>
+	<div id = 'ninjaman'>
+		
+	</div> -->
+
+	<div id='world'></div>
+	<div id='ninja'></div>
+	<div id='bluey'></div>
+	<div id='scaredy'></div>
+	<div id='pinky'></div>
+	<div id='pumpky'></div>
+	<div id='red'></div>
+	<h3 id = 'highscore'>HighScore: </h3>
+	<h3 id= 'score'>Score: </h3>
+	<h3 id= 'lives'>Lives: 3</h3>
+	<h1 id= 'gamestat'>NINJA MAN</h1>
+	<h2 id = refresh> </h2>
+
+
+</body>
+<script type="text/javascript">
+	var highscore = 0;
+	var life = 3;
+	var world = [
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,2,3,0,2,3,0,2,3,0,2,3,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	];
+	var worldDict = {
+		0: 'blank',
+		1: 'wall',
+		2: 'sushi',
+		3: 'onigiri'
+	};
+
+	var newWorld = world;
+
+	function drawWorld(){
+
+		// output = "";
+		// for(var row = 0; row < world.length; row++){
+		// 	output += "<div class = 'row'>"
+		// 	for(var x = 0; x < world[row].length; x++){
+		// 		output += "<div class = '" + worldDict[world[row][x]]+"'></div>"
+		// 		//console.log("element: ", worldDict[world[row][x]])
+		// 	}
+		// 	output += "</div>"
+		// }
+		// document.getElementById('world').innerHTML = output;
+
+		output = "";
+		for(var row = 0; row <= 14; row++){
+			output += "<div class = 'row'>"
+			if(row == 0 || row == 14){
+				for(var x = 0; x <= 14; x++){
+					newWorld[row][x] = 1;
+					output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+				}
+			} else if(row == 13){
+				for(var x = 0; x <= 14; x++){
+					if(x == 0 || x == 14){
+					newWorld[row][x] = 1;	
+					output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+					}else{
+						newWorld[row][x] = 0;
+						output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+					}
+				}
+			}
+			else{
+				for(var x = 0; x < 15; x++){
+					if(x == 0){
+						output += "<div class = '" + worldDict[1]+"'></div>"
+					}
+					else if(x == 1){
+						output += "<div class = '" + worldDict[0]+"'></div>"
+					}
+					else if(x == 14){
+						output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+					}
+					else{
+						var ran = Math.floor(Math.random() * 5) + 1
+						if(ran < 4){
+							newWorld[row][x] = ran;
+							output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+						} else{
+					//newWorld[row][x] = ;
+						output += "<div class = '" + worldDict[world[row][x]]+"'></div>"
+						}
+				
+				//console.log("element: ", worldDict[world[row][x]])
+					}
+				}
+			}
+			
+			
+			output += "</div>"
+		}
+		document.getElementById('world').innerHTML = output;
+	}
+
+
+function updateWorld(){
+	output = "";
+		for(var row = 0; row < newWorld.length; row++){
+			output += "<div class = 'row'>"
+			for(var x = 0; x < newWorld[row].length; x++){
+				output += "<div class = '" + worldDict[newWorld[row][x]]+"'></div>"
+				//console.log("element: ", worldDict[world[row][x]])
+			}
+			output += "</div>"
+		}
+		document.getElementById('world').innerHTML = output;
+}
+
+
+	drawWorld();
+
+	var ninjaman = {
+		x: 1,
+		y: 1,
+		s: 0
+	}
+
+	var blueymon = {
+		x: 2,
+		y: 13,
+		s: 0
+	}
+
+	var pinkymon = {
+		x: 3,
+		y: 13,
+		s: 0
+	}
+
+	var scaredymon = {
+		x: 4,
+		y: 13,
+		s: 0
+	}
+
+	var pumpkymon = {
+		x: 5,
+		y: 13,
+		s: 0
+	}
+
+	var redmon = {
+		x: 6,
+		y: 13,
+		s: 0
+	}
+
+
+	function drawNinjaman(){
+		document.getElementById('ninja').style.top = ninjaman.y*40 + 'px';
+		document.getElementById('ninja').style.left = ninjaman.x*40 + 'px';
+	}
+
+	function drawBluey(){
+		document.getElementById('bluey').style.top = blueymon.y*40 + 'px';
+		document.getElementById('bluey').style.left = blueymon.x*40 + 'px';
+	}
+	function drawPinky(){
+		document.getElementById('pinky').style.top = pinkymon.y*40 + 'px';
+		document.getElementById('pinky').style.left = pinkymon.x*40 + 'px';
+	}
+	function drawPumpky(){
+		document.getElementById('pumpky').style.top = pumpkymon.y*40 + 'px';
+		document.getElementById('pumpky').style.left = pumpkymon.x*40 + 'px';
+	}
+	function drawRed(){
+		document.getElementById('red').style.top = redmon.y*40 + 'px';
+		document.getElementById('red').style.left = redmon.x*40 + 'px';
+	}
+	function drawScaredy(){
+		document.getElementById('scaredy').style.top = scaredymon.y*40 + 'px';
+		document.getElementById('scaredy').style.left = scaredymon.x*40 + 'px';
+	}
+
+	drawNinjaman();
+	drawScaredy();
+	drawRed();
+	drawPinky();
+	drawBluey();
+	drawPumpky();
+
+
+	
+	var randomize = setInterval(randomValue, 1000);
+	var random = 0;
+	function randomValue(){
+		random = Math.floor(Math.random() * 4)
+	}
+
+
+	var id = setInterval(moveVillians, 400);
+	function moveVillians(){
+
+		//Bluey 
+		//This block will be for random movement of the villians
+		if(random == 0){
+			if(newWorld[blueymon.y + 1][blueymon.x] != 1){
+					blueymon.y++;
+			}else if(newWorld[blueymon.y - 1][blueymon.x] != 1){
+					blueymon.y--;
+			} else if(newWorld[blueymon.y][blueymon.x +1] != 1){
+					blueymon.x--;
+					
+			} else if(newWorld[blueymon.y][blueymon.x -1] != 1){
+					blueymon.x++;
+			}
+		}
+
+		//This block is to provide the brains of the villians
+			if(ninjaman.x > blueymon.x  && newWorld[blueymon.y][blueymon.x +1] != 1 ){
+				blueymon.x++;
+				//console.log("is here");
+			}  else if(ninjaman.y < blueymon.y && newWorld[blueymon.y - 1][blueymon.x] != 1 ){
+				blueymon.y--;
+			} else if( ninjaman.y > blueymon.y && world[blueymon.y + 1][blueymon.x] != 1){
+				blueymon.y++;
+			}else if(ninjaman.x < blueymon.x  && newWorld[blueymon.y][blueymon.x -1] != 1){
+				blueymon.x--;
+			}else{
+				if(newWorld[blueymon.y + 1][blueymon.x] != 1){
+					blueymon.y++;
+				}
+				else if(newWorld[blueymon.y - 1][blueymon.x] != 1){
+					blueymon.y--;
+				} else if(newWorld[blueymon.y][blueymon.x +1] != 1){
+					blueymon.x--;
+				} else if(newWorld[blueymon.y][blueymon.x -1] != 1){
+					blueymon.x++;
+				}
+			}
+
+		//Red 
+		//This block will be for random movement of the villians
+		if(random == 1){
+			if(newWorld[redmon.y + 1][redmon.x] != 1){
+					redmon.y++;
+			}else if(newWorld[redmon.y][redmon.x -1] != 1){
+					redmon.x++;
+			}
+			else if(newWorld[redmon.y - 1][redmon.x] != 1){
+					redmon.y--;
+			} else if(newWorld[redmon.y][redmon.x +1] != 1){
+					redmon.x--;
+					
+			} 
+		}
+
+		//This block is to provide the brains of the villians
+			if(ninjaman.x > redmon.x  && newWorld[redmon.y][redmon.x +1] != 1 ){
+				redmon.x++;
+				//console.log("is here");
+			} else if(ninjaman.y < redmon.y && newWorld[redmon.y - 1][redmon.x] != 1 ){
+				redmon.y--;
+			} else if( ninjaman.y > redmon.y && world[redmon.y + 1][redmon.x] != 1){
+				redmon.y++;
+			}else if(ninjaman.x < redmon.x  && newWorld[redmon.y][redmon.x -1] != 1){
+				redmon.x--;
+			} else{
+				if(newWorld[redmon.y + 1][redmon.x] != 1){
+					redmon.y++;
+				}
+				else if(newWorld[redmon.y - 1][redmon.x] != 1){
+					redmon.y--;
+				} else if(newWorld[redmon.y][redmon.x +1] != 1){
+					redmon.x--;
+				} else if(newWorld[redmon.y][redmon.x -1] != 1){
+					redmon.x++;
+				}
+			}
+
+		//Pinky 
+		//This block will be for random movement of the villians
+		if(random == 2){
+			if(newWorld[pinkymon.y + 1][pinkymon.x] != 1){
+					pinkymon.y++;
+			}else if(newWorld[pinkymon.y - 1][pinkymon.x] != 1){
+					pinkymon.y--;
+			} else if(newWorld[pinkymon.y][pinkymon.x +1] != 1){
+					pinkymon.x--;
+					
+			} else if(newWorld[pinkymon.y][pinkymon.x -1] != 1){
+					pinkymon.x++;
+			}
+		}
+
+		//This block is to provide the brains of the villians
+			if(ninjaman.x > pinkymon.x  && newWorld[pinkymon.y][pinkymon.x +1] != 1 ){
+				pinkymon.x++;
+				//console.log("is here");
+			}  else if(ninjaman.y < pinkymon.y && newWorld[pinkymon.y - 1][pinkymon.x] != 1 ){
+				pinkymon.y--;
+			} else if( ninjaman.y > pinkymon.y && world[pinkymon.y + 1][pinkymon.x] != 1){
+				pinkymon.y++;
+			}else if(ninjaman.x < pinkymon.x  && newWorld[pinkymon.y][pinkymon.x -1] != 1){
+				pinkymon.x--;
+			}else{
+				if(newWorld[pinkymon.y + 1][pinkymon.x] != 1){
+					pinkymon.y++;
+				}
+				else if(newWorld[pinkymon.y - 1][pinkymon.x] != 1){
+					pinkymon.y--;
+				} else if(newWorld[pinkymon.y][pinkymon.x +1] != 1){
+					pinkymon.x--;
+				} else if(newWorld[pinkymon.y][pinkymon.x -1] != 1){
+					pinkymon.x++;
+				}
+			}
+
+
+		//pumpky 
+		//This block will be for random movement of the villians
+		if(random == 3){
+			if(newWorld[pumpkymon.y][pumpkymon.x +1] != 1){
+					pumpkymon.x--;
+					
+			} else if(newWorld[pumpkymon.y + 1][pumpkymon.x] != 1){
+					pumpkymon.y++;
+			}else if(newWorld[pumpkymon.y - 1][pumpkymon.x] != 1){
+					pumpkymon.y--;
+			}  else if(newWorld[pumpkymon.y][pumpkymon.x -1] != 1){
+					pumpkymon.x++;
+			}
+		}
+
+		//This block is to provide the brains of the villians
+	
+			if( ninjaman.y > pumpkymon.y && world[pumpkymon.y + 1][pumpkymon.x] != 1){
+				pumpkymon.y++;
+				//console.log("is here");
+			} else if(ninjaman.x < pumpkymon.x  && newWorld[pumpkymon.y][pumpkymon.x -1] != 1){
+				pumpkymon.x--;
+			} else if(ninjaman.y < pumpkymon.y && newWorld[pumpkymon.y - 1][pumpkymon.x] != 1 ){
+				pumpkymon.y--;
+			} else if(ninjaman.x > pumpkymon.x  && newWorld[pumpkymon.y][pumpkymon.x +1] != 1 ){
+				pumpkymon.x++;
+			}else{
+				if(world[pumpkymon.y + 1][pumpkymon.x] != 1){
+					pumpkymon.y++;
+				} else if(newWorld[pumpkymon.y][pumpkymon.x -1] != 1){
+					pumpkymon.x++;
+				} else if(newWorld[pumpkymon.y - 1][pumpkymon.x] != 1){
+					pumpkymon.y--;
+				} else if(newWorld[pumpkymon.y][pumpkymon.x +1] != 1){
+					pumpkymon.x--;
+				} 
+			}
+
+		//scaredy 
+		//This block will be for random movement of the villians
+		if(random == 4){
+			if(newWorld[scaredymon.y][scaredymon.x +1] != 1){
+					scaredymon.x--;
+			} else if(world[scaredymon.y + 1][scaredymon.x] != 1){
+					scaredymon.y++;
+			} else if(newWorld[scaredymon.y][scaredymon.x -1] != 1){
+					scaredymon.x++;
+			} else if(newWorld[scaredymon.y - 1][scaredymon.x] != 1){
+					scaredymon.y--;
+			} 
+		}
+
+		//This block is to provide the brains of the villians
+			if(ninjaman.x > scaredymon.x  && newWorld[scaredymon.y][scaredymon.x +1] != 1 ){
+				scaredymon.x++;
+				//console.log("is here");
+			} else if(ninjaman.x < scaredymon.x  && newWorld[scaredymon.y][scaredymon.x -1] != 1){
+				scaredymon.x--;
+				console.log("is here");
+			} else if(ninjaman.y < scaredymon.y && newWorld[scaredymon.y - 1][scaredymon.x] != 1 ){
+				scaredymon.y--;
+				console.log("is down");
+			} else if( ninjaman.y > scaredymon.y && world[scaredymon.y + 1][scaredymon.x] != 1){
+				scaredymon.y++;
+				console.log("is up");
+			}else{
+				if(world[scaredymon.y + 1][scaredymon.x] != 1){
+					scaredymon.y++;
+				}
+				else if(newWorld[scaredymon.y - 1][scaredymon.x] != 1){
+					scaredymon.y--;
+				} else if(newWorld[scaredymon.y][scaredymon.x +1] != 1){
+					scaredymon.x--;
+				} else if(newWorld[scaredymon.y][scaredymon.x -1] != 1){
+					scaredymon.x++;
+				}
+			}
+
+	drawScaredy();
+	drawRed();
+	drawPinky();
+	drawBluey();
+	drawPumpky();
+
+	if((pumpkymon.x == ninjaman.x && pumpkymon.y == ninjaman.y) 
+		|| (blueymon.x == ninjaman.x && blueymon.y == ninjaman.y) 
+		|| (redmon.x == ninjaman.x && redmon.y == ninjaman.y) 
+		|| (scaredymon.x == ninjaman.x && scaredymon.y == ninjaman.y)
+		|| (pinkymon.x == ninjaman.x && pinkymon.y == ninjaman.y)){
+		life--;
+		if(ninjaman.s > highscore){
+			document.getElementById('highscore').innerHTML = "HighScore: " + ninjaman.s;
+		}
+		document.getElementById('lives').innerHTML = "Lives: " + life;
+		sleep(2000);
+		drawWorld();
+
+		ninjaman.x = 1;
+		ninjaman.y = 1;
+		blueymon.x = 2;
+		blueymon.y = 13;
+		scaredymon.x = 3;
+		scaredymon.y = 13;
+		redmon.x = 4;
+		redmon.y = 13;
+		pinkymon.x = 5;
+		pinkymon.y = 13;
+		pumpkymon.x = 6;
+		pumpkymon.y = 13;
+		if(life < 0){
+			document.getElementById('gamestat').innerHTML = "GAME OVER";
+			document.getElementById('refresh').innerHTML = "refresh to play again";
+			sleep(3000);
+		}
+	}
+
+	}
+
+	function sleep(milliseconds) {
+  		const date = Date.now();
+  		let currentDate = null;
+  			do {
+    			currentDate = Date.now();
+  			} while (currentDate - date < milliseconds);
+	}
+
+
+	document.onkeydown = function(s){
+		if(s.keyCode == 37 || s.keyCode == 40 || s.keyCode == 38 || s.keyCode == 39)
+		console.log(ninjaman.x + " " + ninjaman.y);
+	}
+
+
+
+	document.onkeydown = function(e){
+		if(e.keyCode == 37){// LEFT
+			if(world[ninjaman.y][ninjaman.x -1] != 1){
+				ninjaman.x--;
+			}
+		}
+		if(e.keyCode == 39){// RIGHT
+			if(world[ninjaman.y][ninjaman.x +1] != 1){
+				ninjaman.x++;
+			}
+		}
+		if(e.keyCode == 38){// UP
+			if(world[ninjaman.y - 1][ninjaman.x] != 1){
+				ninjaman.y--;
+			}
+		}
+		if(e.keyCode == 40){ // DOWN
+			if(world[ninjaman.y + 1][ninjaman.x] != 1){
+				ninjaman.y++;
+			}
+		}
+
+		if(world[ninjaman.y][ninjaman.x] == 2/*sushi*/){ 
+			ninjaman.s += 10;
+		}
+		if(world[ninjaman.y][ninjaman.x] == 3/*onigiri*/){
+			ninjaman.s += 5;
+		}
+		world[ninjaman.y][ninjaman.x] = 0;
+		document.getElementById('score').innerHTML = "Score: " + ninjaman.s;
+
+		drawNinjaman();
+		updateWorld();
+	}
+
+</script>
+</html>
